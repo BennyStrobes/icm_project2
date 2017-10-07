@@ -21,8 +21,8 @@ def extract_sample_names(sample_id_file):
 ####################
 # Command line args
 #####################
-# Name of structure we are extracting
-structure_name = sys.argv[1]
+# Name of file containing all structure we are extracting
+structure_name_file = sys.argv[1]
 # Suffix of volume files
 volume_data_suffix = sys.argv[2]
 # Type of statistics in specific volume file
@@ -35,12 +35,16 @@ sample_id_file = sys.argv[5]
 # Extract names of samples from sample_id_file
 sample_names, case_control_status = extract_sample_names(sample_id_file)
 
-
-
+# Create dictionary contianing names of all structures we wish to extract
+structures = {}
+f = open(structure_name_file)
+for line in f:
+    line = line.rstrip()
+    structures[line] = 1
 
 # Loop through each sample and extract volume measurement
-volumes = []
-for sample_name in sample_names:
+volumes = np.zeros(len(sample_names))
+for i,sample_name in enumerate(sample_names):
     # Name of input file for this sample
     input_file = 'volume_data/' + sample_name + volume_data_suffix
     # Variable to keep track of whether we are at the correct statistic
@@ -66,8 +70,8 @@ for sample_name in sample_names:
         line_structure = data[1]
         line_volume = float(data[2])
         # This is what we wanted
-        if line_structure == structure_name:
-            volumes.append(line_volume)
+        if line_structure in structures:
+            volumes[i] = volumes[i] + line_volume
 
 if len(volumes) != len(sample_names):
     print('FATAL ERROR: Something went wrong')
