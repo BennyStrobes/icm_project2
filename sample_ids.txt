@@ -1,0 +1,10 @@
+AD01	AD
+AD02	AD
+AD03	AD
+AD04 	AD
+AD05	AD
+Normal01	Normal
+Normal02	Normal
+Normal03	Normal
+Normal04	Normal
+Normal05	Normal
