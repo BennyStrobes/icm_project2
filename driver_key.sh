@@ -23,9 +23,9 @@ statistic_type="Type2-L5"
 ###########################################
 
 
-# Name of structure as they appear in *.stats files
+# Name of structure to print to output files
 structure_name="SF_PFC_L"
-# File containing
+# File containing structure names as they appear in the data
 structure_name_file=$structure_name"_structure_names.txt"
 printf "SF_PFC_L" > $structure_name_file 
 # Name of output file to save parsed/extract volume measurements to
@@ -41,7 +41,7 @@ python volume_visualization_and_statistical_analysis.py $output_stem $volume_out
 
 # Name of structure as they appear in *.stats files
 structure_name="SF_PFC_sum"
-# File containing
+# File containing structure names as they appear in the data
 structure_name_file=$structure_name"_structure_names.txt"
 printf "SF_PFC_L\nSF_PFC_R" > $structure_name_file 
 # Name of output file to save parsed/extract volume measurements to
